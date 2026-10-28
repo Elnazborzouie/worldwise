@@ -13,6 +13,7 @@ import { UseCities } from "../contexes/CitiesContext";
 import PropTypes from "prop-types";
 import { useGeolocation } from "./hooks/useGeolocation";
 import { useUrlPosition } from "./hooks/useUrlPosition";
+import Button from "./Button";
 
 function Map() {
   const { cities } = UseCities();
@@ -23,7 +24,7 @@ function Map() {
     isLoading: isLoadingPosition,
     position: geoPosition,
     getPosition,
-  } = useGeolocation;
+  } = useGeolocation();
 
   const [mapLat, mapLng] = useUrlPosition();
 
@@ -43,6 +44,11 @@ function Map() {
 
   return (
     <div className={styles.mapContainer}>
+      {!geoPosition && (
+        <Button type="position" onClick={getPosition}>
+          {isLoadingPosition ? "loading..." : "use your position"}
+        </Button>
+      )}
       <MapContainer
         center={mapPosition}
         zoom={6}
@@ -66,9 +72,6 @@ function Map() {
         <ChangeCenter position={mapPosition} />
         <DetectClick />
       </MapContainer>
-      <button onClick={getPosition} type="position">
-        {isLoadingPosition ? "loading..." : "use your position"}
-      </button>
     </div>
   );
 }

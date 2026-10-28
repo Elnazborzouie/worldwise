@@ -8,11 +8,17 @@ function CitiesProvider({ children }) {
   const [currentCity, setCurrentCity] = useState({});
   useEffect(function () {
     async function fetchCities() {
-      setIsLoading(true);
-      const res = await fetch("http://localhost:9000/cities");
-      const data = await res.json();
-      setCities(data);
-      setIsLoading(false);
+      try {
+        setIsLoading(true);
+
+        const res = await fetch("http://localhost:9000/cities");
+        const data = await res.json();
+        setCities(data);
+      } catch {
+        alert("There was an error loading data...");
+      } finally {
+        setIsLoading(false);
+      }
     }
     fetchCities();
   }, []);

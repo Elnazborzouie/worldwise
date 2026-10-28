@@ -3,11 +3,11 @@ import { useNavigate } from "react-router-dom";
 import { UseAuth } from "../contexes/FakeAuthContext";
 
 function User() {
-  const { user, logout } = UseAuth();
+  const { user, logOut } = UseAuth();
   const navigate = useNavigate();
 
   function handleClick() {
-    logout();
+    logOut();
     navigate("/");
   }
 

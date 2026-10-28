@@ -23,6 +23,17 @@
         "lng": 13.376933665713324
       },
       "id": "98443197"
+    },
+    {
+      "cityName": "Ottawa",
+      "country": "Canada",
+      "date": "2026-10-14T14:00:44.000Z",
+      "notes": "nice....",
+      "position": {
+        "lat": "45.3398941934154",
+        "lng": "-75.71777343750001"
+      },
+      "id": "21hp1kijFkU"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

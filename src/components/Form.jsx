@@ -9,6 +9,7 @@ import Spinner from "./Spinner";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { UseCities } from "../contexes/CitiesContext";
+import Button from "./Button";
 
 function Form() {
   const [lat, lng] = useUrlPosition();
@@ -19,7 +20,7 @@ function Form() {
   const [date, setDate] = useState(new Date());
   const [notes, setNotes] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const baseUrl = "https://nomination.openstreetmap.org/reverse";
+  const baseUrl = "https://nominatim.openstreetmap.org/reverse";
 
   useEffect(
     function () {
@@ -49,7 +50,7 @@ function Form() {
     [lat, lng],
   );
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     if (!cityName || !date) return;
     const newCity = {
@@ -59,7 +60,8 @@ function Form() {
       notes,
       position: { lat, lng },
     };
-    createCity(newCity);
+    await createCity(newCity);
+    navigate("/app");
   }
 
   if (isLoading) return <Spinner />;
@@ -96,10 +98,16 @@ function Form() {
       </div>
 
       <div className={styles.buttons}>
-        <button>Add</button>
-        <button type="button" onClick={() => navigate(-1)}>
-          Back
-        </button>
+        <Button type="primary">Add</Button>
+        <Button
+          type="back"
+          onClick={(e) => {
+            e.preventDefault();
+            navigate(-1);
+          }}
+        >
+          &larr;Back
+        </Button>
       </div>
     </form>
   );

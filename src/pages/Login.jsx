@@ -5,6 +5,7 @@ import PageNav from "../components/PageNav";
 
 import styles from "./Login.module.css";
 import { UseAuth } from "../contexes/FakeAuthContext";
+import Button from "../components/Button";
 
 export default function Login() {
   // PRE-FILL FOR DEV PURPOSES
@@ -47,7 +48,7 @@ export default function Login() {
             value={password}
           />
         </div>
-        <button>login</button>
+        <Button type="primary">Login</Button>
       </form>
     </main>
   );
