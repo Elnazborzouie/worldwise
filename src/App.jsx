@@ -18,7 +18,7 @@ function App() {
   return (
     <AuthProvider>
       <CitiesProvider>
-        <BrowserRouter>
+        <BrowserRouter basename="/worldwise">
           <Routes>
             <Route path="/" element={<Homepage />} />
             <Route path="product" element={<Product />} />
